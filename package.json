@@ -5,6 +5,7 @@
   "scripts": {
     "contract:deploy": "sh ./bin/compile.sh && node ./bin/deploy.js",
     "start": "node ./app/src/index.js",
+    "start:dev": "node --require dotenv/config ./app/src/index.js",
     "txgen": "node ./app/src/utils/transactionGenerator.js",
     "test": "jest",
     "test:ci": "jest --ci --runInBand --coverage --coverageDirectory 'reports/junit/' --testResultsProcessor='jest-multi-test-result-processor'",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@appliedblockchain/bmono": "^0.6.5",
     "@appliedblockchain/eslint-config": "^1.10.0",
+    "dotenv": "^5.0.1",
     "eslint": "^4.19.1",
     "html-jest-reporter": "^1.0.0",
     "jest": "^22.4.3",
@@ -54,7 +56,6 @@
     "output": "reports/junit/junit.xml"
   },
   "dependencies": {
-    "dotenv-safe": "^5.0.1",
     "web3": "^1.0.0-beta.33"
   }
 }

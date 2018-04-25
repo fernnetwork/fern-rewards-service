@@ -11,7 +11,6 @@ const web3 = new Web3(host)
 const eth = web3.eth
 const gasLimit = 5000000
 
-const targetDir = '../out'
 const contractsDir = '../app/contracts'
 const files = fs.readdirSync(path.join(__dirname, contractsDir))
 
@@ -27,7 +26,6 @@ const files = fs.readdirSync(path.join(__dirname, contractsDir))
 
       const deployment = Contract.deploy().send({ from: address })
         .then((result) => {
-          fs.writeFileSync(path.join(__dirname, targetDir, `address_${contractName}.txt`), result._address)
           console.log(`Contract ${contractName} deployed, address is: ${result._address}`)
         })
 

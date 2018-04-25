@@ -1,4 +1,4 @@
-# Fern Rewards Service
+# Fern Rewards Service [![CircleCI](https://circleci.com/gh/appliedblockchain/fern-rewards-service.svg?style=svg&circle-token=07418305938c8b6845678298816a782826d7ca2d)](https://circleci.com/gh/appliedblockchain/fern-rewards-service)
 
 Fern is an open protocol that encourages node distribution, provisioning and distributed services that help private networks to grow and build trust.
 
