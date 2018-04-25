@@ -1,21 +1,23 @@
 'use strict'
 
-const vars = [
-  'PARITY_WS',
-  'AUTHORITY_ADDRESS',
-  'REWARD_CONTRACT_ADDRESS',
-  'REWARD_INTERVAL_SECONDS',
-  'STORAGE_CONTRACT_ADDRESS'
+const configItems = [
+  { name: 'PARITY_WS' },
+  { name: 'AUTHORITY_ADDRESS' },
+  { name: 'REWARD_CONTRACT_ADDRESS' },
+  { name: 'REWARD_INTERVAL_SECONDS' },
+  { name: 'STORAGE_CONTRACT_ADDRESS', optional: true }
 ]
 
 const config = {}
 const missing = []
 
-for (let key of vars) {
-  if (!process.env[ key ]) {
-    missing.push(key)
-  } else {
-    config[ key ] = process.env[ key ]
+for (let item of configItems) {
+  const name = item.name
+
+  if (process.env[ name ]) {
+    config[ name ] = process.env[ name ]
+  } else if (!item.optional) {
+    missing.push(name)
   }
 }
 
