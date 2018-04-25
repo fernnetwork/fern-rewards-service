@@ -70,11 +70,11 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker build -t appliedblockchain/$CIRCLE_PROJECT_REPONAME . --build-arg="NPM_TOKEN=$PRIVATE_NPM_TOKEN"
-            docker tag appliedblockchain/$CIRCLE_PROJECT_REPONAME appliedblockchain/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker build -t fernnetwork/$CIRCLE_PROJECT_REPONAME . --build-arg="NPM_TOKEN=$PRIVATE_NPM_TOKEN"
+            docker tag fernnetwork/$CIRCLE_PROJECT_REPONAME fernnetwork/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
       - run:
           name: Push docker image
-          command: docker push appliedblockchain/$CIRCLE_PROJECT_REPONAME
+          command: docker push fernnetwork/$CIRCLE_PROJECT_REPONAME
 
   deploy_dev:
     <<: *container_config
@@ -105,7 +105,7 @@ jobs:
             docker $DOCKER_OPTS rm $(docker ps -aq --filter name=$CIRCLE_PROJECT_REPONAME) || true
 
             # Pull latest image
-            docker $DOCKER_OPTS pull appliedblockchain/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 
+            docker $DOCKER_OPTS pull fernnetwork/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 
 
             # Run reward agent on all hosts
             for HOST_NUM in 1 2 3
@@ -125,7 +125,7 @@ jobs:
                 -e REWARD_INTERVAL_SECONDS=${!VAR_REWARD_INTERVAL_SECONDS} \
                 -e REWARD_CONTRACT_ADDRESS=${!VAR_REWARD_CONTRACT_ADDRESS} \
                 -e STORAGE_CONTRACT_ADDRESS=${!VAR_STORAGE_CONTRACT_ADDRESS} \
-                appliedblockchain/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+                fernnetwork/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             done
 
 workflows:

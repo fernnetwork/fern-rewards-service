@@ -12,11 +12,9 @@ The `fern-rewards-service` triggers the `AuthorityIncentiveScheme` contract ever
 ## Getting Started
 
 ### Prerequisites
-- node >= 8.10.0
-- npm >= 5.8.0
-- run `npm install`
+- node >= 8.10.0 or Docker
 - Access to the Parity RPC & pubsub API on the parity node
-- `SimpleStorage` and `AuthorityIncentiveScheme` contracts must be deployed. See [Deploying the Smart Contracts](#deploying-the-smart-contracts).
+- `SimpleStorage` and `AuthorityIncentiveScheme` contracts must be deployed to the network. See [Deploying the Smart Contracts](#deploying-the-smart-contracts).
 
 ### Paramenters
 - `PARITY_WS`: (required) Parity websocket endpoint.
