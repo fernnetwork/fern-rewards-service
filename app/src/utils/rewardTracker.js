@@ -10,19 +10,19 @@ let lastRewardedBlock
 
 const logEvent = (event) => {
   let { authority, blockNumber } = event.returnValues
-  blockNumber = Number(blockNumber)
+  const blockNum = Number(blockNumber)
 
-  console.info(`Authority ${authority} rewarded for mining block ${blockNumber}.`)
+  console.info(`Authority ${authority} rewarded for mining block ${blockNum}.`)
 
-  if (lastRewardedBlock === blockNumber) {
-    console.error(duplicateRewardError(blockNumber))
+  if (lastRewardedBlock === blockNum) {
+    console.error(duplicateRewardError(blockNum))
   }
 
-  if (lastRewardedBlock && lastRewardedBlock !== (blockNumber - 1)) {
-    console.warn(rewardMissedMsg(blockNumber))
+  if (lastRewardedBlock && lastRewardedBlock !== (blockNum - 1)) {
+    console.warn(rewardMissedMsg(blockNum))
   }
 
-  lastRewardedBlock = blockNumber
+  lastRewardedBlock = blockNum
 }
 
 function rewardMissedMsg(blockNumber) {
