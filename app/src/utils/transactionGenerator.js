@@ -1,5 +1,7 @@
 /**
- * A program that continiously generates randomised transactions on the SimpleStorage contract.
+ * A testing utility that continuously generates randomised transactions on the SimpleStorage contract.
+ *
+ * @author Jimmy Chen
  */
 const { AUTHORITY_ADDRESS, STORAGE_CONTRACT_ADDRESS } = require('../config')
 

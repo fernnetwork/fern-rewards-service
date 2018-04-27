@@ -1,5 +1,10 @@
 'use strict'
-
+/**
+ * Analyses the AuthorityRewarded event from AuthorityIncentiveScheme contract and output
+ *  to the console. Logs errors in unexpected scenarios such as duplicate rewarding.
+ *
+ * @author Jimmy Chen
+ */
 const { REWARD_INTERVAL_SECONDS } = require('../config')
 let lastRewardedBlock
 
