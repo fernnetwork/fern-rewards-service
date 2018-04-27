@@ -11,7 +11,7 @@ const web3 = web3Wrapper.web3
 const simpleStorageContract = web3Wrapper.getContract(contractName, STORAGE_CONTRACT_ADDRESS)
 
 const delay = ms => new Promise(resolve => setTimeout(() => resolve(), ms))
-const randomInt = max => Number(Math.random() * max).toFixed(0)
+const randomInt = max => Math.floor(Math.random() * max)
 
 const generateRandomizedTransaction = async () => {
   const value = web3.utils.stringToHex(`foo-${randomInt(10000)}`)
