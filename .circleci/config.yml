@@ -70,11 +70,11 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker build -t appliedblockchain/$CIRCLE_PROJECT_REPONAME . --build-arg="NPM_TOKEN=$PRIVATE_NPM_TOKEN"
-            docker tag appliedblockchain/$CIRCLE_PROJECT_REPONAME appliedblockchain/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            docker build -t fernnetwork/$CIRCLE_PROJECT_REPONAME . --build-arg="NPM_TOKEN=$PRIVATE_NPM_TOKEN"
+            docker tag fernnetwork/$CIRCLE_PROJECT_REPONAME fernnetwork/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
       - run:
           name: Push docker image
-          command: docker push appliedblockchain/$CIRCLE_PROJECT_REPONAME
+          command: docker push fernnetwork/$CIRCLE_PROJECT_REPONAME
 
   deploy_dev:
     <<: *container_config
@@ -98,14 +98,14 @@ jobs:
             DOCKER_OPTS="-H ${DEV_TARGET_HOST}:2376 --tlsverify --tlscacert $DOCKER_CERT_PATH/ca.pem --tlscert $DOCKER_CERT_PATH/cert.pem --tlskey $DOCKER_CERT_PATH/key.pem"
             echo "Running docker commands on remote server with opts $DOCKER_OPTS"
 
-            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
 
             # Stop all containers
             docker $DOCKER_OPTS stop $(docker ps -aq --filter name=$CIRCLE_PROJECT_REPONAME) || true
             docker $DOCKER_OPTS rm $(docker ps -aq --filter name=$CIRCLE_PROJECT_REPONAME) || true
 
             # Pull latest image
-            docker $DOCKER_OPTS pull appliedblockchain/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 
+            docker $DOCKER_OPTS pull fernnetwork/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 
 
             # Run reward agent on all hosts
             for HOST_NUM in 1 2 3
@@ -125,7 +125,7 @@ jobs:
                 -e REWARD_INTERVAL_SECONDS=${!VAR_REWARD_INTERVAL_SECONDS} \
                 -e REWARD_CONTRACT_ADDRESS=${!VAR_REWARD_CONTRACT_ADDRESS} \
                 -e STORAGE_CONTRACT_ADDRESS=${!VAR_STORAGE_CONTRACT_ADDRESS} \
-                appliedblockchain/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+                fernnetwork/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
             done
 
 workflows:
@@ -133,9 +133,9 @@ workflows:
   main:
     jobs:
       - build_and_test:
-          context: org-global
+          context: build
       - build_docker:
-          context: org-global
+          context: build
           requires: 
             - build_and_test
           filters:
@@ -143,7 +143,7 @@ workflows:
               only:
                - master
       - deploy_dev:
-          context: fern
+          context: deploy
           requires:
             - build_docker
           filters:

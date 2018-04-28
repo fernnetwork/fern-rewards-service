@@ -1,4 +1,4 @@
-# Fern Rewards Service [![CircleCI](https://circleci.com/gh/appliedblockchain/fern-rewards-service.svg?style=svg&circle-token=07418305938c8b6845678298816a782826d7ca2d)](https://circleci.com/gh/appliedblockchain/fern-rewards-service)
+# Fern Rewards Service [![CircleCI](https://circleci.com/gh/fernnetwork/fern-rewards-service.svg?style=svg&circle-token=0789f9ddd90b58aee94a1dac3efee718ea0666c2)](https://circleci.com/gh/fernnetwork/fern-rewards-service)
 
 Fern is an open protocol that encourages node distribution, provisioning and distributed services that help private networks to grow and build trust.
 
@@ -12,31 +12,36 @@ The `fern-rewards-service` triggers the `AuthorityIncentiveScheme` contract ever
 ## Getting Started
 
 ### Prerequisites
-- node >= 8.10.0
-- npm >= 5.8.0
-- run `npm install`
+- node >= 8.10.0 or Docker
 - Access to the Parity RPC & pubsub API on the parity node
-- `SimpleStorage` and `AuthorityIncentiveScheme` contracts must be deployed. See [Deploying the Smart Contracts](#deploying-the-smart-contracts).
+- `SimpleStorage` and `AuthorityIncentiveScheme` contracts must be deployed to the network. See [Deploying the Smart Contracts](#deploying-the-smart-contracts).
 
-### Steps
-1. Create .env file containing the required variables. See `.env.example`.
-  - `PARITY_WS`: parity websocket endpoint.
-  - `AUTHORITY_ADDRESS`: address of the authority.
-  - `REWARD_INTERVAL_SECONDS`: interval for triggering the `AuthorityIncentiveScheme`
-  - `REWARD_CONTRACT_ADDRESS`: address of the deployed `AuthorityIncentiveScheme` contract.
-  - `STORAGE_CONTRACT_ADDRESS`: adddress of the deployed `SimpleStorage` contract.
+### Paramenters
+- `PARITY_WS`: (required) Parity websocket endpoint.
+- `AUTHORITY_ADDRESS`: (required) Address of the authority.
+- `REWARD_INTERVAL_SECONDS`: (required) Interval for triggering the `AuthorityIncentiveScheme`
+- `REWARD_CONTRACT_ADDRESS`: (required) Address of the deployed `AuthorityIncentiveScheme` contract.
+- `STORAGE_CONTRACT_ADDRESS`: (optional) Adddress of the deployed `SimpleStorage` contract. This is only required when running the transaction generator tool.
 
+### Run with npm
+1. Create .env file under the project directory, containing the required variables. See `.env.example`.
 2. Run the reward service:
-  - Using npm:
   ```
   $ npm i
-  $ npm start
+  $ npm run start:dev
   ```
-  - Using docker
+
+### Run with Docker
+Replace the environment variables with your own and run the following command:
   ```
-  $ docker pull appliedblockchain/fern-rewards-service:latest
-  $ docker run -d -v $(pwd)/.env:/app/.env \
-                appliedblockchain/fern-rewards-service
+  $ docker pull fernnetwork/fern-rewards-service:latest
+  $ docker run -d --name fern-rewards-service \
+      -e PARITY_WS=ws://localhost:8546 \
+      -e AUTHORITY_ADDRESS=0x06ecd9d5f588a57d6e696253f95265bd61bee378 \
+      -e REWARD_INTERVAL_SECONDS=7 \
+      -e REWARD_CONTRACT_ADDRESS=0x7504c71dB81c47F64444DcEbf9E8e4F714D5a969 \
+      -e STORAGE_CONTRACT_ADDRESS=0xd91F2D1a5c6d774254B4519D5c63fCd05085D0E8 \
+      fernnetwork/fern-rewards-service
   ```
 
 ## Deploying the Smart Contracts

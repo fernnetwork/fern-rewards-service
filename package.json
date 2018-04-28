@@ -14,17 +14,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/appliedblockchain/fern-rewards-service.git"
+    "url": "git+https://github.com/fernnetwork/fern-rewards-service.git"
   },
   "author": "Jimmy Chen",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://appliedblockchain.atlassian.net/browse/FERN"
+    "url": "https://github.com/fernnetwork/fern-rewards-service/issues"
   },
-  "homepage": "https://github.com/appliedblockchain/fern-rewards-service#readme",
+  "homepage": "https://github.com/fernnetwork/fern-rewards-service#readme",
   "devDependencies": {
     "@appliedblockchain/bmono": "^0.6.5",
-    "@appliedblockchain/eslint-config": "^1.10.0",
+    "@appliedblockchain/eslint-config": "^1.12.0",
     "dotenv": "^5.0.1",
     "eslint": "^4.19.1",
     "html-jest-reporter": "^1.0.0",
