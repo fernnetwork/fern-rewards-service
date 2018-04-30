@@ -24,7 +24,7 @@
   "homepage": "https://github.com/fernnetwork/fern-rewards-service#readme",
   "devDependencies": {
     "@appliedblockchain/bmono": "^0.6.5",
-    "@appliedblockchain/eslint-config": "^1.12.0",
+    "@appliedblockchain/eslint-config": "^2.0.0",
     "dotenv": "^5.0.1",
     "eslint": "^4.19.1",
     "html-jest-reporter": "^1.0.0",
@@ -35,14 +35,12 @@
   "eslintConfig": {
     "extends": "@appliedblockchain/eslint-config/node",
     "rules": {
-      "no-constant-condition": [
-        "error",
-        {
-          "checkLoops": false
-        }
-      ]
+      "no-constant-condition": [ "error", { "checkLoops": false } ],
+      "valid-jsdoc": [ "warn", { "requireParamDescription": false, "requireReturnDescription": false } ],
+      "new-cap": [ "error", { "capIsNewExceptionPattern": "events\\.."} ]
     }
   },
+  "eslintIgnore": [ "reports/*" ],
   "jest-multi-test-result-processor": {
     "processors": [
       "jest-junit",

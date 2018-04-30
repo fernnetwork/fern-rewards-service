@@ -21,7 +21,8 @@ module.exports = {
 
   /**
    * Register a callback on the AuthorityRewarded event.
-   * @param {function}} The event listener
+   * @param {function} callback The event listener
+   * @returns {object} The web3 event emitter object
    */
   onAuthorityRewarded(callback) {
     console.info('Subscribed to AuthorityIncentiveScheme.AuthorityRewarded event.')

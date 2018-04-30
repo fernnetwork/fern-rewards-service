@@ -33,7 +33,9 @@ test('the initial account balacne of authority is 0', async () => {
 
 test('rewards token to current block miner', async () => {
   let authorityRewardEvent
-  contract.once('AuthorityRewarded', (err, event) => authorityRewardEvent = event.returnValues)
+  contract.once('AuthorityRewarded', (err, event) => {
+    authorityRewardEvent = event.returnValues
+  })
   // Given a new block is mined by authority1
   await contract.methods.setBlockCoinbase(authority1).send({ from: creator })
   await contract.methods.setBlockNumber('130').send({ from: creator })
