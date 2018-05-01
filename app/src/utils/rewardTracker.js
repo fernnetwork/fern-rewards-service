@@ -9,7 +9,7 @@ const { REWARD_INTERVAL_SECONDS } = require('../config')
 let lastRewardedBlock
 
 const logEvent = (event) => {
-  let { authority, blockNumber } = event.returnValues
+  const { authority, blockNumber } = event.returnValues
   const blockNum = Number(blockNumber)
 
   console.info(`Authority ${authority} rewarded for mining block ${blockNum}.`)

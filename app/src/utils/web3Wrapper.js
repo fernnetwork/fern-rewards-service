@@ -15,6 +15,8 @@ module.exports = {
   /**
    * Create a new instance of the web3.eth.Contract object from a given contract name and address.
    * @returns {object} A web3.eth.Contract instance
+   * @param {string} contractName
+   * @param {string} contractAddress
    */
   getContract: (contractName, contractAddress) => {
     const ref = `./contracts/${contractName}.sol:${contractName}`
