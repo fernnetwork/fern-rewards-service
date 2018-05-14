@@ -7,20 +7,20 @@ This repository contains a Proof of Concept for incentivising hosted nodes on a 
 ## How does it work?
 The fern reward system consists of an ERC-20 contract on a PoA network and a nodejs app - `fern-rewards-service` that ideally runs on every authority node in the network.
 
-The `fern-rewards-service` triggers the `AuthorityIncentiveScheme` contract every x seconds. The smart contract checks for the miner of the latest block and transfers a reward to the mining authority node. The validation is done on chain in the smart contract, and reward for each block can only be distributed once.
+The `fern-rewards-service` triggers the `FernRewardsToken.rewardMiner` function every x seconds. The smart contract checks for the miner of the latest block and transfers a reward to the mining authority node. The validation is done on chain in the smart contract, and reward for each block can only be distributed once.
 
 ## Getting Started
 
 ### Prerequisites
 - node >= 8.10.0 or Docker
 - Access to the Parity RPC & pubsub API on the parity node
-- `SimpleStorage` and `AuthorityIncentiveScheme` contracts must be deployed to the network. See [Deploying the Smart Contracts](#deploying-the-smart-contracts).
+- `FernRewardsToken` contracts must be deployed to the network. See [Deploying the Smart Contracts](#deploying-the-smart-contracts).
 
 ### Paramenters
 - `PARITY_WS`: (required) Parity websocket endpoint.
 - `AUTHORITY_ADDRESS`: (required) Address of the authority.
-- `REWARD_INTERVAL_SECONDS`: (required) Interval for triggering the `AuthorityIncentiveScheme`
-- `REWARD_CONTRACT_ADDRESS`: (required) Address of the deployed `AuthorityIncentiveScheme` contract.
+- `REWARD_INTERVAL_SECONDS`: (required) Interval for triggering the `FernRewardsToken.rewardMiner` function.
+- `REWARD_CONTRACT_ADDRESS`: (required) Address of the deployed `FernRewardsToken` contract.
 - `STORAGE_CONTRACT_ADDRESS`: (optional) Adddress of the deployed `SimpleStorage` contract. This is only required when running the transaction generator tool.
 
 ### Run with npm

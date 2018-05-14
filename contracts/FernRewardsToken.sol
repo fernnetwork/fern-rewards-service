@@ -1,15 +1,15 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
 import "./includes/FernToken.sol";
 
-contract AuthorityIncentiveScheme is FernToken {
+contract FernRewardsToken is FernToken {
   uint private lastClaimedBlock;
   uint private rewardAmount;
   address private creator;
-  
+
   event AuthorityRewarded(address authority, uint balance, uint blockNumber);
 
-  function AuthorityIncentiveScheme() public {
+  constructor() public {
     creator = msg.sender;
     rewardAmount = 1;
   }
