@@ -1,9 +1,9 @@
 pragma solidity ^0.4.18;
 
-import "./AuthorityIncentiveScheme.sol";
+import "./FernRewardsToken.sol";
 
-contract AuthorityIncentiveSchemeMock is AuthorityIncentiveScheme {
-  
+contract FernRewardsTokenMock is FernRewardsToken {
+
   uint blockNumber;
   address coinbase;
 

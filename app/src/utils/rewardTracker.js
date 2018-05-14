@@ -1,6 +1,6 @@
 'use strict'
 /**
- * Analyses the AuthorityRewarded event from AuthorityIncentiveScheme contract and output
+ * Analyses the AuthorityRewarded event from FernRewardsToken contract and output
  *  to the console. Logs errors in unexpected scenarios such as duplicate rewarding.
  *
  * @author Jimmy Chen

@@ -108,7 +108,7 @@ contract FernToken is FernStandardToken {
     string public symbol;
     string public version = 'H0.1.1';       //human 0.1 standard + applied blockchain first patch (H0.1.1)
 
-     function FernToken() public {
+     constructor() public {
         totalSupply = 10000000000000000000000000000;           // 10 billion + 18 decimals - irb: "10#{("0"*3+"_")*3}#{"0"*18}".to_i
         balances[msg.sender] = totalSupply; // Give the creator all initial tokens
         decimals = 18;

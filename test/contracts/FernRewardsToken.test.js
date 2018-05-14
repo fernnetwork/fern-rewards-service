@@ -10,14 +10,14 @@ const gas = 50000000
 
 let contract
 
-web3.require('./AuthorityIncentiveSchemeMock.sol')
+web3.require('./FernRewardsTokenMock.sol')
 
 afterAll(async () => {
   web3.close()
 })
 
 test('deploys', async () => {
-  contract = await web3.deploy('AuthorityIncentiveSchemeMock', [], { from: creator, gas })
+  contract = await web3.deploy('FernRewardsTokenMock', [], { from: creator, gas })
   expect(typeof contract.options.address).toBe('string')
 })
 
