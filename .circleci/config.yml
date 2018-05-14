@@ -5,7 +5,7 @@ references:
     docker:
       - image: circleci/node:9
     working_directory: ~/workspace
-    
+
   workspace_root: &workspace_root
     ~/workspace
 
@@ -50,13 +50,13 @@ jobs:
           path: reports/junit
       - run:
           name: Install solidity
-          command: wget https://github.com/ethereum/solidity/releases/download/v0.4.21/solc-static-linux && chmod +x solc-static-linux && sudo mv solc-static-linux /usr/bin/solc
+          command: wget https://github.com/ethereum/solidity/releases/download/v0.4.23/solc-static-linux && chmod +x solc-static-linux && sudo mv solc-static-linux /usr/bin/solc
       - run:
           name: Run Tests
           command: npm run test:ci
       - store_test_results:
           path: reports/junit
-      
+
   build_docker:
     <<: *container_config
     steps:
@@ -82,7 +82,7 @@ jobs:
       - *attach_workspace
       - *restore_repo
       - *restore_node_modules
-          
+
       - run:
           name: Deploy contract & reward service
           environment:
@@ -105,19 +105,19 @@ jobs:
             docker $DOCKER_OPTS rm $(docker ps -aq --filter name=$CIRCLE_PROJECT_REPONAME) || true
 
             # Pull latest image
-            docker $DOCKER_OPTS pull fernnetwork/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 
+            docker $DOCKER_OPTS pull fernnetwork/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
 
             # Run reward agent on all hosts
             for HOST_NUM in 1 2 3
             do
               ENV_VAR_PREFIX=DEV_HOST${HOST_NUM}
-              
+
               VAR_PARITY_WS=${ENV_VAR_PREFIX}_PARITY_WS
               VAR_AUTHORITY_ADDRESS=${ENV_VAR_PREFIX}_AUTHORITY_ADDRESS
               VAR_REWARD_INTERVAL_SECONDS=${ENV_VAR_PREFIX}_REWARD_INTERVAL_SECONDS
               VAR_REWARD_CONTRACT_ADDRESS=${ENV_VAR_PREFIX}_REWARD_CONTRACT_ADDRESS
               VAR_STORAGE_CONTRACT_ADDRESS=${ENV_VAR_PREFIX}_STORAGE_CONTRACT_ADDRESS
-              
+
               CONTAINER_NAME=${CIRCLE_PROJECT_REPONAME}-${HOST_NUM}
               docker $DOCKER_OPTS run -d --name $CONTAINER_NAME \
                 -e PARITY_WS=${!VAR_PARITY_WS} \
@@ -136,7 +136,7 @@ workflows:
           context: build
       - build_docker:
           context: build
-          requires: 
+          requires:
             - build_and_test
           filters:
             branches:

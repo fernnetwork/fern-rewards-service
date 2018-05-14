@@ -1,4 +1,4 @@
-pragma solidity ^0.4.11;
+pragma solidity ^0.4.23;
 
 contract FernTokenBase {
     /* This is a slight change to the ERC20 base standard.
