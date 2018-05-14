@@ -14,7 +14,7 @@ The `fern-rewards-service` triggers the `FernRewardsToken.rewardMiner` function 
 ### Prerequisites
 - node >= 8.10.0 or Docker
 - Access to the Parity RPC & pubsub API on the parity node
-- `SimpleStorage` and `FernRewardsToken` contracts must be deployed to the network. See [Deploying the Smart Contracts](#deploying-the-smart-contracts).
+- `FernRewardsToken` contracts must be deployed to the network. See [Deploying the Smart Contracts](#deploying-the-smart-contracts).
 
 ### Paramenters
 - `PARITY_WS`: (required) Parity websocket endpoint.
